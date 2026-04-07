@@ -1,0 +1,84 @@
+# ──────────────────────────────────────────
+#  Dataset (auto-downloaded on first run)
+# ──────────────────────────────────────────
+data/
+datasets/
+
+# ──────────────────────────────────────────
+#  Model checkpoints & saved weights
+# ──────────────────────────────────────────
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# ──────────────────────────────────────────
+#  Training outputs & logs
+# ──────────────────────────────────────────
+results/
+logs/
+multirun/
+outputs/
+*.log
+
+# ──────────────────────────────────────────
+#  Generated figures & plots
+# ──────────────────────────────────────────
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# ──────────────────────────────────────────
+#  Generated result CSVs (attack outputs)
+# ──────────────────────────────────────────
+results_gradient_attacks.csv
+results_confidence_mia.csv
+
+# ──────────────────────────────────────────
+#  Python cache & build artifacts
+# ──────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ──────────────────────────────────────────
+#  Jupyter notebook checkpoints
+# ──────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ──────────────────────────────────────────
+#  Virtual environments
+# ──────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+
+# ──────────────────────────────────────────
+#  Hydra outputs
+# ──────────────────────────────────────────
+multirun/
+hydra_outputs/
+.hydra/
+
+# ──────────────────────────────────────────
+#  NumPy binary outputs
+# ──────────────────────────────────────────
+*.npz
+*.npy
+
+# ──────────────────────────────────────────
+#  OS & editor clutter
+# ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

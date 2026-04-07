@@ -1,0 +1,59 @@
+---
+# Base configuration for FL experiments
+# var_local_epochs enables system heterogeneity (required for FedNova to shine)
+
+defaults:
+  - _self_
+  - strategy: fedavg
+  - optimizer: vanilla
+
+var_local_epochs: True
+datapath: fednova/data/
+checkpoint_path: fednova/checkpoints/
+num_clients: 16
+num_epochs: 3
+num_rounds: 100
+batch_size: 32
+NIID: True
+alpha: 1.0
+var_min_epochs: 2
+var_max_epochs: 5
+lr_scheduling: True
+seed: 1
+mode: train
+
+early_stop:
+  enabled: false        # stop when centralized test loss stops improving
+  patience: 20          # consecutive rounds allowed without significant improvement
+  min_delta: 0.001      # minimum absolute drop in test loss to count as improvement
+  warmup_rounds: 10     # ignore early-stop checks during initial noisy rounds
+  check_interval_rounds: 5  # evaluate early-stop condition every N rounds
+
+# Differential Privacy (client-side, Opacus)
+dp:
+  enabled: true          # set true to enable DP-SGD on each client
+  noise_multiplier: 1.0   # Gaussian noise multiplier s
+  max_grad_norm: 1.5      # per-sample gradient clipping bound C
+  target_delta: 1.0e-5    # d for (e, d)-DP guarantee
+  batch_size: 64        # optional DP physical batch size; null -> use batch_size
+  min_batch_size: 8       # lower bound for automatic OOM backoff
+
+model:
+  _target_: fednova.models.SmallCNN
+
+client_resources:
+  num_cpus: 2        # limits concurrent clients to floor(total_cpus/2) instead of all 16
+  num_gpus: 0.125
+
+hydra:
+  sweep:
+    dir: multirun
+    subdir: ${hydra.job.override_dirname}/${seed}
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - seed
+          - num_rounds
+        kv_sep: _
+        item_sep: _

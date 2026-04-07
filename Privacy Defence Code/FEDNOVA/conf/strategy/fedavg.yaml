@@ -1,0 +1,11 @@
+---
+name: fedavg
+strategy:
+  _target_: fednova.strategy.FedAvgWithCommTracking
+  _recursive_: false
+  fraction_fit: 0.75
+  fraction_evaluate: 0.0
+
+client_fn:
+  _target_: fednova.baseline_client.gen_clients_fedavg
+  _recursive_: false

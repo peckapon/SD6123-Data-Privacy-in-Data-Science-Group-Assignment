@@ -1,0 +1,13 @@
+
+# @package _global_
+
+# FedAvg: no proximal term (mu=0.0)
+# FedAvgClient uses torch.optim.SGD internally; lr/momentum/weight_decay are
+# read directly from config.optimizer — _target_ is intentionally not used.
+exp_name: fedavg
+
+optimizer:
+  lr: 0.05
+  momentum: 0
+  weight_decay: 1e-4
+  mu: 0.0
